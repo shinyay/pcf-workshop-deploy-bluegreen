@@ -77,4 +77,19 @@ $ ./gradlew clean build -x test
 $ cf push hello-pcf-green
 ```
 
+#### アプリケーションの確認
+デプロイ済みのアプリケーションを `cf apps` コマンドで確認します。
+
+```
+$ cf apps
+
+syanagihara@pivotal.io として組織 syanagihara-org / スペース development 内のアプリを取得しています...
+OK
+
+名前              要求された状態   インスタンス   メモリー   ディスク   URL
+hello-pcf         started          1/1            1G         1G         hello-pcf-active-mouse.cfapps.io
+hello-pcf-green   started          1/1            1G         1G         hello-pcf-green-daring-mandrill.cfapps.io
+```
+
+
 ## まとめ / 振り返り
