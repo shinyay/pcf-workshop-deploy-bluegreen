@@ -11,7 +11,7 @@ public class HelloPcfApplication {
 
     @GetMapping("/")
     String hello() {
-        return "Hello, World! Blue";
+        return "Hello, World! Green";
     }
 
 	public static void main(String[] args) {

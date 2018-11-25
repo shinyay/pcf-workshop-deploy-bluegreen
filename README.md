@@ -13,7 +13,7 @@ Pivotal Cloud Foundry では、`cf map-route` と `umnap-route` コマンドを�
   - [事前作業](https://github.com/shinyay/pcf-workshop-prerequisite/blob/master/README.md)
 
 ## 手順 / 解説
-#### Blue 環境用のアプリケーション修正
+### Blue 環境用のアプリケーション修正
 
 - 出力メッセージに "Blue" を追加
 
@@ -26,5 +26,55 @@ String hello() {
 }
 ```
 </details>
+
+#### Blue 環境用のアプリケーションをデプロイ
+以下のコマンドでビルド＆デプロイを行います。
+
+```
+$ ./gradlew clean build -x test
+$ cf push
+```
+
+#### Blue 環境用のアプリケーションの動作確認
+以下のコマンドで定期的にアプリケーションにアクセスし動作確認をします。
+
+```
+$ while true; do curl -s http://<アプリケーションURL>; echo; sleep 1;done
+```
+
+<details><summary>実行結果</summary>
+
+```
+Hello, World! Blue
+Hello, World! Blue
+Hello, World! Blue
+Hello, World! Blue
+Hello, World! Blue
+Hello, World! Blue
+```
+</details>
+
+### Green 環境用のアプリケーション修正
+
+- 出力メッセージに "Green" を追加
+
+<details><summary>編集済みソースコード</summary>
+
+```
+@GetMapping("/")
+String hello() {
+    return "Hello, World! Green";
+}
+```
+</details>
+
+#### Green 環境用のアプリケーションをデプロイ
+以下のコマンドでビルド＆デプロイを行います。
+Manifest.yml に定義しているアプリケーション名を上書きしてデプロイを行います。
+
+```
+$ ./gradlew clean build -x test
+$ cf push hello-pcf-green
+```
 
 ## まとめ / 振り返り
