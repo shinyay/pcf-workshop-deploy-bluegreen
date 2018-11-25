@@ -245,6 +245,7 @@ OK
 名前        要求された状態   インスタンス   メモリー   ディスク   URL
 hello-pcf   started          1/1            1G         1G         hello-pcf-active-mouse.cfapps.io
 ```
+<details>
 
 ### Blue Green デプロイメントの切り戻し
 Blue 環境のアプリケーションを削除する前であれば、新しいアプリケーション(Green 環境)に問題が確認された場合に切り戻しができます。
