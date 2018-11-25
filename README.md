@@ -91,5 +91,46 @@ hello-pcf         started          1/1            1G         1G         hello-pc
 hello-pcf-green   started          1/1            1G         1G         hello-pcf-green-daring-mandrill.cfapps.io
 ```
 
+Blue アプリケーションへのアクセス
+
+![app-blue](images/app-blue.png)
+
+Green アプリケーションへのアクセス
+
+![app-green](images/app-green.png)
+
+### Blue 環境へのリクエストを Green 環境へルーティング
+以下のコマンドで、Blue 環境へのリクエストが Green 環境へルーティングするように設定します。
+
+```
+$ cf map-route <Green環境のアプリケーション名> <ドメイン名(ここでは cfapps.io)> --hostname <ホスト名>
+```
+
+<details><summary>実行結果</summary>
+
+```
+$ cf map-route hello-pcf-green cfapps.io --hostname hello-pcf-active-mouse
+
+syanagihara@pivotal.io として組織 syanagihara-org / スペース development の経路 hello-pcf-active-mouse.cfapps.io を作成しています...
+OK
+経路 hello-pcf-active-mouse.cfapps.io は既に存在しています
+syanagihara@pivotal.io として経路 hello-pcf-active-mouse.cfapps.io を組織 syanagihara-org / スペース development 内のアプリ hello-pcf-green に追加しています...
+OK
+```
+</details>
+
+Blue と Green の2つのアプリケーションに同じURLでアクセス出来る状態になりました。
+cURL でのアクセス確認は以下のように両方のメッセージが表示されます。
+
+```
+Hello, World! Green
+Hello, World! Blue
+Hello, World! Blue
+Hello, World! Green
+Hello, World! Green
+Hello, World! Blue
+```
+
+### Blue アプリケーションへのルーティングの除外
 
 ## まとめ / 振り返り
